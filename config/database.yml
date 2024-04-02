@@ -81,7 +81,8 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: shenda_chhim_production
-  username: shenda_chhim
-  password: <%= ENV["SHENDA_CHHIM_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  database: postgresql_shenda_chhim
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgresql_shenda_chhim_user
+  password: <%= ENV['DATABASE_PASSWORD'] %>

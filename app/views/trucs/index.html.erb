@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Trucs</h1>
+
+<div id="trucs">
+  <% @trucs.each do |truc| %>
+    <%= render truc %>
+    <p>
+      <%= link_to "Show this truc", truc %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New truc", new_truc_path %>

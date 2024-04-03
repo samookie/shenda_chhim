@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @truc %>
+
+<div>
+  <%= link_to "Edit this truc", edit_truc_path(@truc) %> |
+  <%= link_to "Back to trucs", trucs_path %>
+
+  <%= button_to "Destroy this truc", @truc, method: :delete %>
+</div>

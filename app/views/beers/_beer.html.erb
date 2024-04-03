@@ -1,2 +1,6 @@
 <div id="<%= dom_id beer %>">
+    <strong>Name:</strong>
+    <%= beer.name %>
+
+    <%= beer.notes.pluck(:value).sum / beer.notes.length%>
 </div>

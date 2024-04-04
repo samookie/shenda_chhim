@@ -1,0 +1,7 @@
+%h1 Editing beer
+= render "form", beer: @beer
+%br/
+%div
+  = link_to "Show this beer", @beer
+  |
+  \#{link_to "Back to beers", beers_path}

@@ -1,0 +1,8 @@
+%p{:style => "color: green"}= notice
+%h1 Beers
+#beers
+  - @beers.each do |beer|
+    = render beer
+    %p
+      = link_to "Show this beer", beer
+= link_to "New beer", new_beer_path

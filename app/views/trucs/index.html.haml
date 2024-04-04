@@ -1,0 +1,8 @@
+%p{:style => "color: green"}= notice
+%h1 Trucs
+#trucs
+  - @trucs.each do |truc|
+    = render truc
+    %p
+      = link_to "Show this truc", truc
+= link_to "New truc", new_truc_path

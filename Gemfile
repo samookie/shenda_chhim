@@ -9,6 +9,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 gem "sprockets-rails"
 gem "annotate"
 gem "devise"
+gem "haml"
 # Use postgresql as the database for Active Record
 #gem "pg", "~> 1.1"
 

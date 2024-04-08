@@ -14,6 +14,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_195512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "beer_geeks", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_beer_geeks_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_beer_geeks_on_reset_password_token", unique: true
+  end
+
+  create_table "beers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "name"
+    t.bigint "brand_id"
+    t.index ["brand_id"], name: "index_beers_on_brand_id"
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cards", force: :cascade do |t|
     t.string "name"
@@ -34,6 +59,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_195512) do
     t.index ["player_id"], name: "index_inventories_on_player_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.integer "value"
+    t.bigint "beer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beer_id"], name: "index_notes_on_beer_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,13 +79,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_195512) do
     t.index ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
   end
 
+  create_table "trucs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "type_cards", force: :cascade do |t|
     t.string "libelle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "beers", "brands"
   add_foreign_key "cards", "inventories"
   add_foreign_key "cards", "type_cards"
   add_foreign_key "inventories", "players"
+  add_foreign_key "notes", "beers"
 end

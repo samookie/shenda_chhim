@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy ]
+  before_action :set_images, only: %i[ new edit]
 
   # GET /cards or /cards.json
   def index
@@ -63,8 +64,12 @@ class CardsController < ApplicationController
       @card = Card.find(params[:id])
     end
 
+    def set_images
+      @images = Dir.glob("public/images/*")
+    end
+
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :description, :type_card_id)
+      params.require(:card).permit(:name, :description,:image, :type_card_id)
     end
 end

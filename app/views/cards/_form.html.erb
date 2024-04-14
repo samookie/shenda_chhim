@@ -22,8 +22,19 @@
   </div>
 
   <div class="my-5">
+    <%= form.label "Choisissez votre image : "%>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <% Dir.glob("public/images/*").each do |image_path| %>
+        <div>
+          <%= image_tag(image_path.split("/").last, class: "h-auto max-w-full rounded-lg") %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="my-5">
     <%= form.label :type_card_id %>
-    <%= form.text_field :type_card_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :type_card_id, options_for_select(TypeCard.all.map{ |type_card| [type_card.libelle, type_card.id]}),{},class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">

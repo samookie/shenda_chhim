@@ -4,6 +4,8 @@ class InventoriesController < ApplicationController
   # GET /inventories or /inventories.json
   def index
     @inventories = Inventory.all
+    @inventory = current_player.inventory if current_player.present?
+    @cards = @inventory.cards if @inventory.present?
   end
 
   # GET /inventories/1 or /inventories/1.json

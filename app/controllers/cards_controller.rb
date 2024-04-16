@@ -14,10 +14,12 @@ class CardsController < ApplicationController
   # GET /cards/new
   def new
     @card = Card.new
+    @player = current_player
   end
 
   # GET /cards/1/edit
   def edit
+    @player = current_player
   end
 
   # POST /cards or /cards.json
@@ -37,6 +39,7 @@ class CardsController < ApplicationController
 
   # PATCH/PUT /cards/1 or /cards/1.json
   def update
+    @player = current_player
     respond_to do |format|
       if @card.update(card_params)
         format.html { redirect_to card_url(@card), notice: "Card was successfully updated." }
@@ -70,6 +73,6 @@ class CardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def card_params
-      params.require(:card).permit(:name, :description,:image, :type_card_id)
+      params.require(:card).permit(:name, :description,:image, :type_card_id, :inventory_id)
     end
 end

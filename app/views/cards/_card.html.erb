@@ -1,22 +1,24 @@
-<div id="<%= dom_id card %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= card.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= card.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Type card:</strong>
-    <%= card.type_card_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this card", card, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this card", edit_card_path(card), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div id="<%= dom_id card %>" data-type="<%= TypeCard.find(card.type_card_id).libelle %>" class="card ">
+  <div class="relative inline-block justify-center m-4">
+    <% if card.image.present? %>
+      <%= image_tag(card.image.split("/").last, class:"w-64 h-auto") %>
+    <% end %>
+    <div class="absolute inset-0 flex flex-col justify-between p-2.5 ">
+      <div class="text-white h-7 <%= card.type_card_id == 1 ? 'bg-black' : card.type_card_id == 2 ? 'bg-blue-700' : card.type_card_id == 3 ? 'bg-purple-700' : '' %>  bg-opacity-50 rounded-md">
+        <p class="font-semibold text-center"><%= card.name %></p>
+      </div>
+      <div class="text-white h-40 <%= card.type_card_id == 1 ? 'bg-black' : card.type_card_id == 2 ? 'bg-blue-700' : card.type_card_id == 3 ? 'bg-purple-700' : '' %> bg-opacity-50 rounded-md ">
+        <p class="font-semibold p-2"><%= TypeCard.find(card.type_card_id).libelle %> :</p>
+        <p class="p-2"><%= card.description %></p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <% if action_name != "show" %>
+      <%= link_to "Show this card", card, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Edit this card", edit_card_path(card), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <hr class="mt-6">
+    <% end %>
+  </div>
+  
 </div>

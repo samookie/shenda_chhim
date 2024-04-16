@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+["Normal","Effect","Trap"].each do |type_card_name|
+    TypeCard.find_or_create_by!(libelle: type_card_name)
+end

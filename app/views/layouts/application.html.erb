@@ -16,17 +16,17 @@
                         <h1 class="text-md py-2 text-gray-50 font-bold hidden md:block"> League of Cards </h1>
                     </div>
                     <ul class="flex flex-col text-gray-50">
-                        <li>
-                            <span>
-                                <%= link_to "Inventory", inventories_path %>
-                            </span>
-                        </li>
-                        <li>
-                            <span>
-                                <%= link_to "Card", cards_path %>
-                            </span>
-                        </li>
                         <% if player_signed_in? %>
+                            <li>
+                                <span>
+                                    <%= link_to "Inventory", inventories_path %>
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    <%= link_to "Card", cards_path %>
+                                </span>
+                            </li>
                             <li>
                                 <%= link_to "Modifier le profil", edit_player_registration_path %>
                             </li>

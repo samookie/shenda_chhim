@@ -22,14 +22,15 @@
   </div>
 
   <div class="my-5">
-    <%= form.label "Choisissez votre image : "%>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <% Dir.glob("public/images/*").each do |image_path| %>
-        <div id="<%= File.basename(image_path) %>">
-          <%= image_tag(File.basename(image_path), class: "h-auto max-w-full rounded-lg image-selector", data: {image_path: File.basename(image_path)}) %>
-          
-        </div>
-      <% end %>
+    <%= form.label "Choisissez votre image : " %>
+    <div class="my-5 h-screen overflow-y-auto bg-black rounded-md p-2 bg-opacity-90">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 ">
+        <% Dir.glob("public/images/*").each do |image_path| %>
+          <div id="<%= File.basename(image_path) %>">
+            <%= image_tag(File.basename(image_path), class: "h-auto max-w-full rounded-lg image-selector", data: {image_path: File.basename(image_path)}) %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   <%= form.hidden_field :image, id:"selected-image", value:"" %>

@@ -4,7 +4,11 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = Card.all
+    if current_player.present?
+
+      @cards = current_player.cards
+
+    end
   end
 
   # GET /cards/1 or /cards/1.json
